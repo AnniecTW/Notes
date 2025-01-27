@@ -60,9 +60,9 @@ General idea: Find the max and min values in the given array and their correspon
 
 1) There exists different max and min values and<br>
 
-    a) the index of the maximum is smaller than the index of the minimun: output the difference between the maximum and minimum<br>
+    a) the index of the minimun is smaller than the index of the maximum: output the difference between the maximum and minimum<br>
     
-    b) the index of the maximum is larger than the index of the minimun:<br>
+    b) the index of the minimun is larger than the index of the maximum:<br>
    
     - Remove the maximum value from the array, then find the next maximum value and repeat the process until the index of the minimum is smaller than the index of the maximum.<br>
     - If fails, the process might go to step 3.<br>
