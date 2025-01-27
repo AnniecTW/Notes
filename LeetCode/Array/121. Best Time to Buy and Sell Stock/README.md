@@ -59,12 +59,18 @@ The main task is to perform calculations or operations on the given array.
 General idea: Find the max and min values in the given array and their corresponding indices. Several situations can occur as follows:<br>
 
 1) There exists different max and min values and<br>
+
     a) the index of the maximum is smaller than the index of the minimun: output the difference between the maximum and minimum<br>
+    
     b) the index of the maximum is larger than the index of the minimun:<br>
+   
     - Remove the maximum value from the array, then find the next maximum value and repeat the process until the index of the minimum is smaller than the index of the maximum.<br>
     - If fails, the process might go to step 3.<br>
+    
 3) The max and min values are the same and<br>
+
     a) their indices are different: output 0<br>
+    
     b) their indices are the same: only one element, ouput 0 directly<br>
 
 ### Implement
