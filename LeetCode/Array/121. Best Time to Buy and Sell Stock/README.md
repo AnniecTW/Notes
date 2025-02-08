@@ -40,9 +40,9 @@ Constraints:<br>
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
 1. Can the array `prices` be empty?
 - No, the length of an array is restricted to be greater than or equal to 1, so there must be at least one element in the array, and the array cannot be empty.
-2. In this case, is short selling possible?
+2. In this case, is short selling or day trading possible?
 - No, buying must be before selling.
-3. Happy cases<br>  Input: prices = [10,2,5] ; Output: 8<br>
+3. Happy cases<br>  Input: prices = [10,2,5] ; Output: 3<br>
 4. Are there any time or space complexity I should be aware of?
 - An optimal solution would have O(n) in time complexity and O(1) in space complexity
 
