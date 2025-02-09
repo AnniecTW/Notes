@@ -56,22 +56,18 @@ The main task is to perform calculations or operations on the given array.
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General idea: Find the max and min values in the given array and their corresponding indices. Several situations can occur as follows:<br>
+General idea: Traverse the entire list and store the smallest value in a variable `buy_price`. While traversing, calculate the difference between the current price and `buy_price` and store it in a variable `profit`. Finally, obtain the maximum `profit`. <br>
 
-1) There exists different max and min values and<br>
+1) Initiate variable `buy_price = prices[0]` 、 `profit = 0`<br>
 
-    a) the index of the minimun is smaller than the index of the maximum: output the difference between the maximum and minimum<br>
+2) Traverse the list from second element to the end and store the smallest value in a variable `buy_price`.<br>
     
-    b) the index of the minimun is larger than the index of the maximum:<br>
-   
-    - Remove the maximum value from the array, then find the next maximum value and repeat the process until the index of the minimum is smaller than the index of the maximum.<br>
-    - If fails, the process might go to step 3.<br>
+3) While traversing, calculate the difference between the current price and `buy_price` and store it in a variable `profit`.<br>
+   - Since `buy_price` is stored fisrt, any subsequent prices encountered will appear after `buy_price`, ensuring that selling never occurs before buyinhg.
     
-3) The max and min values are the same and<br>
+4) During each traversal, update `profit` if a higher value is found. <br>
 
-    a) their indices are different: output 0<br>
-    
-    b) their indices are the same: only one element, ouput 0 directly<br>
+5) return `profit` <br>
 
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
