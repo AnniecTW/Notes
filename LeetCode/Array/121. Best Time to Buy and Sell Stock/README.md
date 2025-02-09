@@ -58,7 +58,7 @@ The main task is to perform calculations or operations on the given array.
 
 General idea: Traverse the entire list and store the smallest value in a variable `buy_price`. While traversing, calculate the difference between the current price and `buy_price` and store it in a variable `profit`. Finally, obtain the maximum `profit`. <br>
 
-1) Initiate variable `buy_price = prices[0]` 、 `profit = 0`<br>
+1) Initiate variables `buy_price = prices[0]` 、 `profit = 0`.<br>
 
 2) Traverse the list from second element to the end and store the smallest value in a variable `buy_price`.<br>
     
@@ -67,7 +67,7 @@ General idea: Traverse the entire list and store the smallest value in a variabl
     
 4) During each traversal, update `profit` if a higher value is found. <br>
 
-5) return `profit` <br>
+5) Return `profit`. <br>
 
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
