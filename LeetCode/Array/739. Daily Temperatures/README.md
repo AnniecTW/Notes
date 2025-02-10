@@ -49,9 +49,7 @@ In a monotonic stack, the strictly decreasing property is used to find the next 
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Create a monotonic stack (strictly decreasing) and add indices of the numbers that are smaller then the last element of the stack while traversing the `temperatures` array.<br>
-              If a larger number is encountered, `answers[i]` equals to the difference between the index of the larger number and that of the last element of the stack.<br>
-              If no larger number is encountered, remain the `answers[i]` zero.
+General Idea: Use a monotonic stack to track indices of temperatures in strictly decreasing order, updating the answer when a larger temperature is encountered. If no larger temperature is found, leave the answer as zero. <br>
 
 1) Create a stack, initialize it with a zero number.<br>
 2) Initialize the `answers` array with all zeros and length equaling to the length of `temperatures`.<br>
