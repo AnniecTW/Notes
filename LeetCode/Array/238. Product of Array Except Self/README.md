@@ -77,7 +77,7 @@ Assume N represents the number of items in the array.
 - Time Complexity: O(N) for computing prefix and suffix products, and constructing the answer array.
 - Space Complexity: O(N)
 
--------------------------------------------------------------------------------------------------------------------------------------------------<br>
+---------------------------------------------------------------------------------------------------------------------------------------------<br>
 Follow up: Can you solve the problem in `O(1)` extra space complexity?
 
 ### Plan
