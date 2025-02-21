@@ -1,4 +1,4 @@
-## 1. Merge Intervals
+## 56. Merge Intervals
 🔗  Link: [Merge Intervals](https://leetcode.com/problems/merge-intervals/description/)<br>
 💡 Difficulty: Medium<br>
 🛠️ Topics: Array<br>
