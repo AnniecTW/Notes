@@ -34,7 +34,7 @@ Constraints:
 > - Ask clarifying questions and use examples to understand what the interviewer wants out of this problem.
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
-1. Can the nums array be empty?
+1. Can the `intervals` array be empty?
 2. Any requirements on time/space complexity?
 3. Is the given array sorted?
 4. Happy path - Input: intervals = [[1,4],[4,5],[6,7]]; Output: [[1,5],[6,7]]
