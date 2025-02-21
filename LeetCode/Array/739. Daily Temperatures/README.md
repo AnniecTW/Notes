@@ -1,4 +1,4 @@
-## 1. Daily Temperatures
+## 739. Daily Temperatures
 🔗 Link: [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/description/)<br>
 💡 Difficulty: Medium<br>
 🛠️ Topics: Array<br>
