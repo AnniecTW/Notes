@@ -47,17 +47,21 @@ Follow up: Can you solve the problem in `O(1)` extra space complexity? (The outp
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. Prefix/suffix<br>
- <br>
+1. Array<br>
+   This problem falls under the Arrays category because it involves manipulating elements based on their positions and computing prefix/suffix products.
+2. Prefix/suffix product<br>
+   This problem aligns with the prefix-suffix product pattern, which is commonly used for solving array-based multiplication problems without division.<br>
+3. Strategy<br>
+   A common approach to solving this type of problem is using a two-pass prefix and suffix product method, which works well because it efficiently computes the results in O(n) time with O(1) extra space. (This approach will appear in the second part of the solution.)
 
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Compute prefix and suffix products first, then use their products to construct the answer array
+General Idea: Compute prefix and suffix products first, then use these values to construct the `answer` array
 
 1) Compute prefix product and suffix products, each having a length of `len(nums) + 1`
-2) Update the answer array with the corresponding values of prefix and suffix products 
+2) Update the `answer` array with the corresponding values of prefix and suffix products 
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
