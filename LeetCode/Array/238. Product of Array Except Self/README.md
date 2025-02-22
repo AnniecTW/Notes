@@ -57,7 +57,7 @@ Follow up: Can you solve the problem in `O(1)` extra space complexity? (The outp
 General Idea: Compute prefix and suffix products first, then use their products to construct the answer array
 
 1) Compute prefix product and suffix products, each having a length of `len(nums) + 1`
-2) For i=0 to i=`len(nums)`, `answer[i]` = `prefix[i]` * `suffix[n-i-1]`
+2) Update the answer array with the corresponding values of prefix and suffix products 
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -81,15 +81,12 @@ Assume N represents the number of items in the array.
 Follow up: Can you solve the problem in `O(1)` extra space complexity?
 
 ### Plan
-General Idea: Sort in advance, then decide if two intervals overlap according to the latter's `starti`.
+General Idea: Use variable `curr` as running product to store prefix and suffix products of `nums`, then update the `answer` array with `curr`
 
-1) Sort according to the first element in every interval
-2) Track current interval that is going to be compared while traversing the `intervals` list by storing it in a variable `curr`
-3) Traverse the `intervals`
-    - If the first element of each interval is smaller than or equal to current interval's `endi`, meaning the two intervals overlap, append a new interval to the answer
-    - The `starti` of the new interval is that of the current interval, and its `endi` is the larger one of the two `endi`s
-    - Else, append current interval to the answer
-    - 
+1) Initialize an `answer` array with a length of `len(nums)`
+2) Use `curr` to store the prefix products in the first for loop and update the `answer` array
+3) In the second for loop, use `curr` to store the suffix products while updating the `answer` array  
+    
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
 
