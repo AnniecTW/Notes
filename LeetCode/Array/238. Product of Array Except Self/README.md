@@ -1,5 +1,5 @@
 ## 238. Product of Array Except Self
-🔗  Link: [Product of Array Except Self](\https://leetcode.com/problems/product-of-array-except-self/description/)<br>
+🔗  Link: [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/description/)<br>
 💡 Difficulty: Medium<br>
 🛠️ Topics: Array<br>
 
