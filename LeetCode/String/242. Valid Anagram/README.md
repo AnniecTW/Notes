@@ -36,10 +36,10 @@ Constraints:
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. Sorting (O(N log N))
-   If two strings are anagrams, their sorted versions must be identical.
-2. Hash Table / Dictionary (O(N)) → Best Approach
-   Count character frequencies using `Counter` or `defaultdict(int)`, then compare.
+1. Sorting (O(N log N))<br>
+   If two strings are anagrams, their sorted versions must be identical.<br>
+2. Hash Table / Dictionary (O(N)) → Best Approach<br>
+   Count character frequencies using `Counter` or `defaultdict(int)`, then compare.<br>
 <br>
 
 ### Plan
