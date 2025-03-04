@@ -30,13 +30,16 @@ Constraints:
 1. Can the strings be empty?
 2. Any requirements on time/space complexity?
 3. Happy path - Input: s = "eat", t = "tea" Output: true
-4. Edge case 1 - Input: s = "aaa", t = "aa" Output: false
+4. Edge case 1 - Input: s = "aaa", t = "aa" Output: false (different length)
 5. Edge case 2 - Input: s = "aaa", t = "aaa" Output: true
-6. Edge case 3 - Input: s = "eat", t = "tea" Output: true
+6. Edge case 3 - Input: s = "b", t = "b" Output: true
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. String<br>
+1. Sorting (O(N log N))
+   If two strings are anagrams, their sorted versions must be identical.
+2. Hash Table / Dictionary (O(N)) → Best Approach
+   Count character frequencies using `Counter` or `defaultdict(int)`, then compare.
 <br>
 
 ### Plan
