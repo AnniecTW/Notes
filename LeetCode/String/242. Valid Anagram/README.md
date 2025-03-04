@@ -65,7 +65,17 @@ Assume N, M represent the number of items in the `s` and `t` strings.
 
 - Time Complexity: O(N + M)
 - Space Complexity: O(1)
+  
+---------------------------------------------------------------------------------------------------------------------------------------------<br>
+Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
+    
+### Implement
+> - Implement the solution (make sure to know what level of detail the interviewer wants)
 
+see solution.py (Same as the previous)
 
-- Time Complexity: O(N)
-- Space Complexity: O(N)
+### Evaluate
+Assume N, M represent the number of items in the `s` and `t` strings.
+
+- Time Complexity: O(N + M)
+- Space Complexity: O(N + M)
