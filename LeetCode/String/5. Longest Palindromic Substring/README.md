@@ -3,7 +3,7 @@
 💡 Difficulty: Medium<br>
 🛠️ Topics: String<br>
 
-=======================================================================================<br>
+============================================================================================<br>
 Given a string `s`, return the longest palindromic substring in `s`.<br>
 
  
@@ -22,39 +22,42 @@ Output: "bb"<br>
 Constraints:<br>
 
 - 1 <= s.length <= 1000<br>
-- `s` consist of only digits and English letters.<br>
-=======================================================================================<br>
+- `s` consist of only digits and English letters.
+
+===========================================================================================<br>
 ### UMPIRE Method:
 #### Understand
 
 > - Ask clarifying questions and use examples to understand what the interviewer wants out of this problem.
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
-1. Can the `nums` array be empty?<br>
-   No, at least two elements in the array.<br>
+1. Can the string be empty?<br>
+   No, at least one character.<br>
 2. Any requirements on time/space complexity?<br>
-   You must write an algorithm that runs in O(n) time and without using the division operation.<br>
-3. Happy path - Input: nums = [1,5,3,2]; Output: [30,6,10,15]
-4. Edge case - Input: nums = [0,1]; Output: [1,0]
-5. Edge case - Input: nums = [0,0]; Output: [0,0]
+3. Is single char a palindromic substring?<br>
+   Yes, it can be considered a palindromic substring.<br>
+4. Happy path - Input: s = "banana"; Output: "anana"
+5. Edge case - Input: s = "aBc"; Output: "a", "B", or "c"
+6. Edge case - Input: s = "a"; Output: "a"
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. Array<br>
-   This problem falls under the Arrays category because it involves manipulating elements based on their positions and computing prefix/suffix products.
-2. Prefix/suffix product<br>
-   This problem aligns with the prefix-suffix product pattern, which is commonly used for solving array-based multiplication problems without division.<br>
-3. Strategy<br>
-   A common approach to solving this type of problem is using a two-pass prefix and suffix product method, which works well because it efficiently computes the results in O(n) time with O(1) extra space. (This approach will appear in the second part of the solution.)
+1. String (Palindrome-related) <br>
+   A common strategy for solving it is the Expand Around Center approach, where we check for the longest palindromic substring by expanding outward from both odd-length and even-length centers.
 
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Compute prefix and suffix products first, then use these values to construct the `answer` array
+General Idea: Traverse each char in the string `s` and find the longest palindromic substring by expanding form both odd-length and even-length centers separately.<br>
 
-1) Compute prefix product and suffix products, each having a length of `len(nums) + 1`
-2) Update the `answer` array with the corresponding values of prefix and suffix products 
+1) If `s` is empty or has only one char, return `s` directly.
+2) Define a function `fromcenter(left, right)`, which expands outward from the given indices while the characters are the same, keeping track of the longest palindromic substring found.
+3) Iterate through each char in `s`, treating it as a center:
+   - use `fromcenter(i, i)` to find the longest odd-length palindrome
+   - use `fromcenter(i, i+1)` to find the longest even-length palindrome
+   - compare both result and update the starting and ending indices of the longest palindrome found so far
+4) Return the longest palindromic substring
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -68,8 +71,8 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N represents the number of items in the array.
+Assume N represents the number of characters in the string.
 
 
-- Time Complexity: O(N) for computing prefix and suffix products, and constructing the answer array.
-- Space Complexity: O(N)
+- Time Complexity: O(N<sup>2</sup>)
+- Space Complexity: O(1)
