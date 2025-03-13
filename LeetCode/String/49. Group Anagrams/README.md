@@ -65,7 +65,7 @@ General Idea: Use a hash map to group words with the same sorted characters.<br>
 
 1) Initialize a `defaultdict` (hash map) with `list` as the default value type
 2) For each string in `strs`, sort the characters and use the sorted string as a key. Append the original string to the corresponding list<br>
-3) Return all the values of the `defaultdict`
+3) Return all the values of the `defaultdict` (set to list)
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
