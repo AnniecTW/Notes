@@ -43,22 +43,27 @@ Constraints:<br>
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. String <br>
+1. String / Sliding window + Hash map
+   - Sliding Window: Efficiently traverses a string by maintaining a fixed-size window, making updates rather than rebuilding from scratch each time
+   - Hash Map (or Counter): Keeps track of character frequencies to compare two substrings' compositions
+   - Optimization: Removing keys with 0 frequency helps reduce unnecessary comparisons
 
    
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Traverse each char in the string `s` and find the longest palindromic substring by expanding form both odd-length and even-length centers separately.<br>
+General Idea: Use a dictionary to record the number of each character in `s1`, and traverse each substring of length `len(s1)`in `s2` with a sliding window approach to check if it is a permutation of `s1`.<br>
 
-1) If `s` is empty or has only one char, return `s` directly.
-2) Define a function `fromcenter(left, right)`, which expands outward from the given indices while the characters are the same, keeping track of the longest palindromic substring found.
-3) Iterate through each char in `s`, treating it as a center:
-   - use `fromcenter(i, i)` to find the longest odd-length palindrome
-   - use `fromcenter(i, i+1)` to find the longest even-length palindrome
-   - compare both result and update the starting and ending indices of the longest palindrome found so far
-4) Return the longest palindromic substring
+1) If the length of `s2` is less than `s1`, `s2` can never contain a permutation of `s1`, so return false
+2) Use a dictionary `count_s1` to record the frequency of each character in `s1`
+3) Initialize a dictionary `count_s2` to record the frequency of each character in the first substring of length `len(s1)` in `s2` 
+4) Compare `count_s1` and `count_s2`: If they are equal, return true; otherwise, continue the next step
+5) Traverse each substring of length `len(s1)` in `s2` by moving the window one character at a time (using ptr `i` and `j`)
+   - For each step, remove the leftmost charecter (pointed by `i`) from `count_s2` and add the new rightmost character (pointed by `j`)
+   - If the frequency of any character in `count_s2` becomes `0`, remove it from the dictionary 
+   - Compare `count_s1` and `count_s2` after each move: If they are equal, return true; otherwise, continue the sliding window
+6) Return fasle if no valid substring is found
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -72,8 +77,10 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N represents the number of characters in the string.
+Assume N represents the length of `s1` and M represents the length of `s2`
 
-
-- Time Complexity: O(N<sup>2</sup>)
+- Time Complexity: O(N + M)
+  The initialization spends O(N) and the sliding process spends O(M - N), summing up to O(M).
 - Space Complexity: O(1)
+  At most 26 unique characters in the dictionary, meaning that the space used is constant and independent of N and M.
+  
