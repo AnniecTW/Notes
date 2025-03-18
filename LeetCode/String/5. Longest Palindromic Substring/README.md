@@ -12,7 +12,7 @@ Example 1:<br>
 
 Input: s = "babad"<br>
 Output: "bab"<br>
-Explanation: "aba" is also a valid answer.<br><br>
+Explanation: "aba" is also a valid answer.<br>
 
 Example 2:<br>
 
