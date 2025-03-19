@@ -43,10 +43,10 @@ Constraints:<br>
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 1. String<br>
-   It’s a type of String Manipulation Problem where we are not allowed to directly convert the input strings to integers and multiply them
+   It’s a type of String Manipulation Problem where we are not allowed to directly convert the input strings to integers and multiply them.
 2. Simulation / Math<br>
    This problem requires us to simulate the traditional multiplication algorithm where we multiply each digit of num1 with every digit of num2 and manage carry operations.
-   It involves building a result array and then filling it by breaking down the multiplications process into individual digit multiplication
+   It involves building a result array and then filling it by breaking down the multiplications process into individual digit multiplication.
    
 ### Plan
 > - Sketch visualizations and write pseudocode
