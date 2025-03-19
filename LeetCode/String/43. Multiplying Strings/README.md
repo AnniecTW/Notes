@@ -42,9 +42,9 @@ Constraints:<br>
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. String
+1. String<br>
    It’s a type of String Manipulation Problem where we are not allowed to directly convert the input strings to integers and multiply them
-3. Simulation / Math
+2. Simulation / Math<br>
    This problem requires us to simulate the traditional multiplication algorithm where we multiply each digit of num1 with every digit of num2 and manage carry operations.
    It involves building a result array and then filling it by breaking down the multiplications process into individual digit multiplication
    
@@ -52,16 +52,19 @@ Constraints:<br>
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: If one of `num1` and `num2` is zero or both are, then return "0". Otherwise, mimic human mathematic calculations by multiplying each digit of `s1` with that of `s2`, and carry the ten digit number if result is more than 10.<br>
+General Idea: If either `num1` or `nums2` is zero, return "0". Otherwise, mimic the human calculation process by multiplying each digit of `num1` with each digit of `nums2`, storing the results in a list `rst` and handling carry operations.<br>
 
-1) If one of `num1` and `nums2` is zero or both are, then return "0"
-2) Initialize a list `rst` of length `len(num1) + len(num2)` with all elements 0
-3) Use double for loop to multiply each digit of `num1` and `num2` by index `i` and `j`, and add the result to `rst[i + j + 1]`
-   - Divide the updated result `total` and add the number to `rst[i + j] `
-   - Mod `total` and store the number at `rst[i + j + 1]`
-6) After traversal, transform each integer in the list `rst` into string
-7) Concatenate all element in `rst` and strip the possible leading '0'
-8) If `rst` is not null, return `rst`; othrrwise, return '0'
+1) If either `num1` or `nums2` is zero, return "0"
+2) Initialize a list `rst` of length `len(num1) + len(num2)` with all elements `0`. This array stores the intermediate results of multiplication
+3) Use nested loop to multiply each digit of `num1` and `num2`
+   - Outer loop: Iterate `i` from the last index of `num1` to the first
+   - Inner loop: Iterate `j` from the last index of `num2` to the first
+   a) Multiply `num1[i]` by `nums[2]` and add the product to `rst[i + j + 1]` to be current `total`
+   b) Update `rst[i + j]` by adding the quotient of `total // 10` (carry)
+   c) Update `rst[i + j + 1]` by  setting it to `total % 10` (remainder)
+6) Convert each element of the list `rst` to a string
+7) Concatenate all element of `rst` and remove leading `'0'`
+8) If `rst` is non-empty, return it; othrrwise, return `'0'`
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -75,10 +78,7 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N represents the length of `s1` and M represents the length of `s2`
+Assume N represents the length of `num1` and M represents the length of `num2`
 
-- Time Complexity: O(N + M)
-  The initialization spends O(N) and the sliding process spends O(M - N), summing up to O(M).
-- Space Complexity: O(1)
-  At most 26 unique characters in the dictionary, meaning that the space used is constant and independent of N and M.
-  
+- Time Complexity: O(N * M)
+- Space Complexity: O(N + M)
