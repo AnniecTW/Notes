@@ -1,4 +1,4 @@
-## 232. Pernutation in String
+## 232. Permutation in String
 🔗  Link: [Pernutation in String](https://leetcode.com/problems/permutation-in-string/description/)<br>
 💡 Difficulty: Medium<br>
 🛠️ Topics: String<br>
