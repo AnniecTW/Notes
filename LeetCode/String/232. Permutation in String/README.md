@@ -1,5 +1,5 @@
 ## 232. Permutation in String
-🔗  Link: [Permutation in String](https://leetcode.com/problems/permutation-in-string/description/)<br>
+🔗 Link: [Permutation in String](https://leetcode.com/problems/permutation-in-string/description/)<br>
 💡 Difficulty: Medium<br>
 🛠️ Topics: String<br>
 
