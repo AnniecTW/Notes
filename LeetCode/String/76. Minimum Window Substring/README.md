@@ -31,9 +31,9 @@ Explanation: Both 'a's from t must be included in the window. Since the largest 
 
 Constraints:<br>
 
-- `m == s.length`
-- `n == t.length`
-- `1 <= m, n <= 10<sup>5</sup>`
+- m == s.length
+- n == t.length
+- 1 <= m, n <= 10<sup>5</sup>
 - `s` and `t` consist of uppercase and lowercase English letters.
 
 Follow up: Could you find an algorithm that runs in O(m + n) time?
