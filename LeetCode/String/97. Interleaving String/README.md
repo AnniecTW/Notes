@@ -63,9 +63,9 @@ Follow up: Could you solve it using only O(s2.length) additional memory space?
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 1. String<br>
-   
 2. Dynamic programming<br>
-   
+   A 2D DP approach helps store results for substrings efficiently and avoid redundant computations. The state transition depends on previous states (`dp[i-1][j]` or `dp[i][j-1]`)
+   - The space complexity can be optimized from O(m * n) to O(n) by using a 1D DP.
    
 ### Plan
 > - Sketch visualizations and write pseudocode
@@ -99,7 +99,9 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N represents the length of `num1` and M represents the length of `num2`
+Assume N represents the length of `s1` and M represents the length of `s2`
 
 - Time Complexity: O(N * M)
-- Space Complexity: O(N + M)
+  We iterate through the 2D DP table once, filling each cell based on previously computed values.
+- Space Complexity: O(N * M)
+  We store results for all substring combinations in 2D DP table.
