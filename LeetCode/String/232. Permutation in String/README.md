@@ -79,8 +79,8 @@ see solution.py
 
 Assume N represents the length of `s1` and M represents the length of `s2`
 
-- Time Complexity: O(N + M)
+- Time Complexity: O(N + M)<br>
   The initialization spends O(N) and the sliding process spends O(M - N), summing up to O(M).
-- Space Complexity: O(1)
+- Space Complexity: O(1)<br>
   At most 26 unique characters in the dictionary, meaning that the space used is constant and independent of N and M.
   
