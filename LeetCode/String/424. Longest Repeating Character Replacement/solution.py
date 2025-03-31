@@ -1,21 +1,18 @@
 from collections import Counter
+
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        i, j, n = 0, 0, len(s)
-        counter = Counter()
-        longest = float('-inf')
+        freqs = Counter()
+        res = 1
+        i = 0
 
-        while j < n:
-            counter[s[j]] += 1
-            max_freq = max(counter.values())
-            str_length = j - i + 1
-            while str_length - max_freq > k:
-                counter[s[i]] -= 1
+        for j in range(len(s)):
+            freqs[s[j]] += 1
+            maxFreq = max(freqs.values())
+            curLen = j - i + 1
+            if curLen - maxFreq > k:
+                freqs[s[i]] -= 1
                 i += 1
-                max_freq = max(counter.values())
-                str_length = j - i + 1
-
-            longest = max(longest, j - i + 1)
-            j += 1    
-
-        return longest
+            res = max(res, j - i + 1)
+        
+        return res
