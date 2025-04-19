@@ -18,7 +18,7 @@ Explanation: 9 exists in nums and its index is 4<br>
 
 Example 2:<br>
 
-Input: s1 =  nums = [-1,0,3,5,9,12], target = 2<br>
+Input: nums = [-1,0,3,5,9,12], target = 2<br>
 Output: -1<br>
 Explanation: 2 does not exist in nums so return -1<br>
  
