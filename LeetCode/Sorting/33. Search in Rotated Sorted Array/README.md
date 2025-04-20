@@ -8,7 +8,7 @@ There is an integer array `nums` sorted in ascending order (with distinct values
 
 Prior to being passed to your function, `nums` is possibly rotated at an unknown pivot index `k` (`1 <= k < nums.length`) such that the resulting array is `[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]` (0-indexed). For example, `[0,1,2,4,5,6,7]` might be rotated at pivot index `3` and become `[4,5,6,7,0,1,2]`.<br>
 
-Given the array `nums` after the possible rotation and an integer `target`, return the index of `target` if it is in `nums`, or `-1` if it is not in nums.<br>v
+Given the array `nums` after the possible rotation and an integer `target`, return the index of `target` if it is in `nums`, or `-1` if it is not in nums.<br>
 
 You must write an algorithm with O(log n) runtime complexity.<br>
 
@@ -67,14 +67,14 @@ General Idea: We use a modified binary search to find the target in O(log n) tim
 
 1) Initialize `left = 0` and `right = len(nums) - 1` 
 2) While `left <= right`, repeat the following steps
-   - calculate the middle index `mid` using `mid = (left + right) // 2`
-   - If `nums[mid]` is equal to `target`, return `mid`
-   - If `nums[left] <= nums[mid]`, indicating the left half is sorted, check whether target is in this part
-     - If so, set `right = mid - 1`
-     - Otherwise, set `left = mid + 1`
-   - If the right half is sorted, check whether the target is in it
-     - If so, set `left = mid + 1`
-     - Otherwise, set `right = mid - 1`
+   a) calculate the middle index `mid` using `mid = (left + right) // 2`
+   b) If `nums[mid]` is equal to `target`, return `mid`
+   c) If `nums[left] <= nums[mid]`, indicating the left half is sorted, check whether target is in this part
+     i) If so, set `right = mid - 1`
+     ii) Otherwise, set `left = mid + 1`
+   d) If the right half is sorted, check whether the target is in it
+     i) If so, set `left = mid + 1`
+     ii) Otherwise, set `right = mid - 1`
 3) Return `-1` if the target is not found
     
 ### Implement
