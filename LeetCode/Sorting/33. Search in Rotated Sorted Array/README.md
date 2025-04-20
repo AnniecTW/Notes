@@ -67,14 +67,14 @@ General Idea: We use a modified binary search to find the target in O(log n) tim
 
 1) Initialize `left = 0` and `right = len(nums) - 1` 
 2) While `left <= right`, repeat the following steps<br>
-   a) calculate the middle index `mid` using `mid = (left + right) // 2`<br>
-   b) If `nums[mid]` is equal to `target`, return `mid`<br>
-   c) If `nums[left] <= nums[mid]`, indicating the left half is sorted, check whether target is in this part<br>
-     i) If so, set `right = mid - 1`<br>
-     ii) Otherwise, set `left = mid + 1`<br>
-   d) If the right half is sorted, check whether the target is in it<br>
-     i) If so, set `left = mid + 1`<br>
-     ii) Otherwise, set `right = mid - 1`<br>
+   - calculate the middle index `mid` using `mid = (left + right) // 2`<br>
+   - If `nums[mid]` is equal to `target`, return `mid`<br>
+   - If `nums[left] <= nums[mid]`, indicating the left half is sorted, check whether target is in this part<br>
+     - If so, set `right = mid - 1`<br>
+     - Otherwise, set `left = mid + 1`<br>
+   - If the right half is sorted, check whether the target is in it<br>
+     - If so, set `left = mid + 1`<br>
+     - Otherwise, set `right = mid - 1`<br>
 3) Return `-1` if the target is not found
     
 ### Implement
