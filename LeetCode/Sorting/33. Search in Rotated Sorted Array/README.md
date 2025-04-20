@@ -4,31 +4,39 @@
 🛠️ Topics: Sorting<br>
 
 ============================================================================================<br>
-Given an array of integers `nums` which is sorted in ascending order, and an integer `target`, write a function to search `target` in `nums`. If `target` exists, then return its index. Otherwise, return -1.<br>
+There is an integer array `nums` sorted in ascending order (with distinct values).<br>
 
-You must write an algorithm with `O(log n)` runtime complexity.<br>
+Prior to being passed to your function, `nums` is possibly rotated at an unknown pivot index `k` (`1 <= k < nums.length`) such that the resulting array is `[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]` (0-indexed). For example, `[0,1,2,4,5,6,7]` might be rotated at pivot index `3` and become `[4,5,6,7,0,1,2]`.<br>
+
+Given the array `nums` after the possible rotation and an integer `target`, return the index of `target` if it is in `nums`, or `-1` if it is not in nums.<br>v
+
+You must write an algorithm with O(log n) runtime complexity.<br>
+
+
 
  
 
 Example 1:<br>
 
-Input: nums = [-1,0,3,5,9,12], target = 9<br>
+Input: nums = [4,5,6,7,0,1,2], target = 0<br>
 Output: 4<br>
-Explanation: 9 exists in nums and its index is 4<br>
 
 Example 2:<br>
 
-Input: s1 =  nums = [-1,0,3,5,9,12], target = 2<br>
+Input: nums = [4,5,6,7,0,1,2], target = 3<br>
 Output: -1<br>
-Explanation: 2 does not exist in nums so return -1<br>
- 
+
+Example 3:<br>
+
+Input: nums = [1], target = 0<br>
+Output: -1<br>
 
 Constraints:<br>
 
-- 1 <= nums.length <= 10<sup>4</sup>
+- 1 <= nums.length <= 5000
 - -10<sup>4</sup> < nums[i], target < 10<sup>4</sup>
-- All the integers in `nums` are unique.
-- `nums` is sorted in ascending order.
+- All the values of `nums` are unique.
+- `nums` is an ascending array that is possibly rotated.
 ===========================================================================================<br>
 ### UMPIRE Method:
 #### Understand
@@ -39,28 +47,35 @@ Constraints:<br>
 1. Can `nums` be empty?<br>
 2. Any requirements on time/space complexity?<br>
 3. Are there duplicate intergers in `nums`?<br>
-4. Happy path - Input: `nums` = [-1,0,3,5,9,12], target = 0; Output: 2
-5. Edge case - Input: `nums` = [-1,0,3,5,9,12], target = 2; Output: -1
+4. Happy path - Input: `nums` = [1,2,3,4,0], target = 0; Output: 3
+5. Edge case - Input: `nums` = [-1], target = 2; Output: -1
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. Binary Search
-   - The binary search strategy efficiently finds the target value in O(log N) time by repeatedly halving the search range.
+1. Array / Binary Search
+   - Binary Search with boundaries adjustment
+   - Key idea: One part of the array (left or right of `mid`) is always sorted even after rotation
+   - Decision making based on where the `target` lies in relation to that sorted portion
 
    
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: To achieve O(log n) runtime, use binary search to deal with this problem.<br>
+General Idea: We use a modified binary search to find the target in O(log n) time. At each iteration, one side of the mid element must be sorted.<br>
+              We can check whether the target lies in the sorted half and move our boundaries accordingly.
 
 1) Initialize `left = 0` and `right = len(nums) - 1` 
 2) While `left <= right`, repeat the following steps
    - calculate the middle index `mid` using `mid = (left + right) // 2`
-   - If `nums[mid] == target`, return `mid`
-   - If `target < nums[mid]`, then update `right = mid - 1` (search in the left half)
-   - If `target > nums[mid]`, then update `left = mid + 1` (search in the right half)
-6) Return -1 if the target is not found
+   - If `nums[mid]` is equal to `target`, return `mid`
+   - If `nums[left] <= nums[mid]`, indicating the left half is sorted, check whether target is in this part
+     - If so, set `right = mid - 1`
+     - Otherwise, set `left = mid + 1`
+   - If the right half is sorted, check whether the target is in it
+     - If so, set `left = mid + 1`
+     - Otherwise, set `right = mid - 1`
+3) Return `-1` if the target is not found
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
