@@ -55,8 +55,8 @@ General Idea: Use a min-heap of size k to keep track of the k largest elements s
 
 1) Initialize an empty heap `heap = []`
 2) Iterate through `nums`, and for each number<br>
-   a) Push it into the heap<br>
-   b) If the heap size exceeds k, pop the smallest element (ensure the heap keeps only the k largest elements)<br>
+   - Push it into the heap<br>
+   - If the heap size exceeds k, pop the smallest element (ensure the heap keeps only the k largest elements)<br>
 6) Return `heap[0]` (the smallest among the k largest elements → i.e. the kth largest overall)
     
 ### Implement
