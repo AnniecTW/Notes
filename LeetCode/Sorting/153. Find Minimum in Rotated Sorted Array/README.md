@@ -70,8 +70,7 @@ Constraints:<br>
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: We use a modified binary search to find the minimum in O(log n) time. At each iteration, one side of the mid element must contain the minimum.<br>
-              We can check which side the target lies in and move our boundaries accordingly.
+General Idea: We use a modified binary search to find the minimum in O(log n) time. At each iteration, one side of the mid element must contain the minimum. We can check which side the target lies in and move our boundaries accordingly.
 
 1) Initialize `left = 0` and `right = len(nums) - 1` 
 2) While `left < right`, repeat the following steps<br>
