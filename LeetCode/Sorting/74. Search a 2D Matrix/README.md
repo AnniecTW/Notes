@@ -51,27 +51,24 @@ Constraints:<br>
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 1. 2D - Array / Binary Search
    - Strategy: Use Binary Search twice — first locate the correct row , then to locate the column within that row
-   - Optimization: Treat the 2D matrix as a flattened 1D sorted array. Use `row = index // num_cols`, `col = index % num_cols` to map the 1D index back to 2D coordinates.
+   - Optimization: Treat the 2D matrix as a flattened 1D sorted array. Use `row = index // num_cols`, `col = index % num_cols` to map the 1D indices back to 2D coordinates.
 
    
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: We use a modified binary search to find the target in O(log n) time. At each iteration, one side of the mid element must be sorted.<br>
-              We can check whether the target lies in the sorted half and move our boundaries accordingly.
+General Idea: Since each row is sorted in non-decreasing order and each first element of a row is greater than the last of the previous row, we can treat the 2D matrix as a flattened 1D sorted array. Use standard binary search to map 1D indices back into 2D coordinates.
 
-1) Initialize `left = 0` and `right = len(nums) - 1` 
-2) While `left <= right`, repeat the following steps<br>
-   - calculate the middle index `mid` using `mid = (left + right) // 2`<br>
-   - If `nums[mid]` is equal to `target`, return `mid`<br>
-   - If `nums[left] <= nums[mid]`, indicating the left half is sorted, check whether target is in this part<br>
-     - If so, set `right = mid - 1`<br>
-     - Otherwise, set `left = mid + 1`<br>
-   - If the right half is sorted, check whether the target is in it<br>
-     - If so, set `left = mid + 1`<br>
-     - Otherwise, set `right = mid - 1`<br>
-3) Return `-1` if the target is not found
+1) Set `m` to the number of rows and `n` to the number of columns
+2) Initialize `start` to 0 and `end` to `m * n - 1`
+3) While `start <= end`, repeat the following steps<br>
+   - use `mid = (start + end) // 2` to calculate the middle index `mid` when stretched in a 1D array <br>
+   - map `mid` to the 2D coordinates, using `row, col = mid // n, mid % n`<br>
+   - If `matrix[row][col] == target`, return `true`<br>
+   - If `matrix[row][col] < target`, set `start = mid + 1`<br>
+   - Otherwise, set `end = mid - 1`<br>
+4) Return `false` if the target is not found
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -88,5 +85,6 @@ see solution.py
 Assume M represents the number of rows in `matrix` and N represents the number of cols in `matrix`
 
 - Time Complexity: O(log (M * N))<br>
+  We conduct binary search on a virtual 1D array of size M * N.
 - Space Complexity: O(1)
   
