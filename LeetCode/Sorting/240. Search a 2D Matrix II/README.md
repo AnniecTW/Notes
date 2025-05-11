@@ -12,14 +12,14 @@ Write an efficient algorithm that searches for a value `target` in an `m x n` in
 
 
 Example 1:<br>
-![searchgrid](https://github.com/user-attachments/assets/8261b7df-63d9-47c8-b7b7-484088e0480f)
+![searchgrid2](https://github.com/user-attachments/assets/98f3c195-9c60-4073-aaaf-665fc1749264)
 
 
 Input: matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5<br>
 Output: true<br>
 
 Example 2:<br>
-![searchgrid2](https://github.com/user-attachments/assets/98f3c195-9c60-4073-aaaf-665fc1749264)
+![searchgrid](https://github.com/user-attachments/assets/8261b7df-63d9-47c8-b7b7-484088e0480f)
 
 
 Input: matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20<br>
@@ -52,27 +52,22 @@ Constraints:<br>
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. 2D - Array / Binary Search
-   - Strategy: Use Binary Search twice — first avoid the impossible row, then to locate the column within all possible rows
+1. 2D Array with sorted rows and columns
+   - Strategy: Since the matrix is sorted in ascending order both row-wise and column-wise, we can eliminate entire rows or columns that cannot possibly contain the target by moving strategically
    
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: We first conduct binary search on the last column, and then only dive into the rows whose last column's values are larger than target.<br>
-              Then do binary search on these rows one by one. At the same time, we can narrow down the range during each search by the result of previous search.
+General Idea: Start from the top-right corner and move left or down to gradually eliminate impossible rows or columns.<br>
 
-1) Initialize `left = 0` and `right = len(nums) - 1` 
-2) While `left <= right`, repeat the following steps<br>
-   - calculate the middle index `mid` using `mid = (left + right) // 2`<br>
-   - If `nums[mid]` is equal to `target`, return `mid`<br>
-   - If `nums[left] <= nums[mid]`, indicating the left half is sorted, check whether target is in this part<br>
-     - If so, set `right = mid - 1`<br>
-     - Otherwise, set `left = mid + 1`<br>
-   - If the right half is sorted, check whether the target is in it<br>
-     - If so, set `left = mid + 1`<br>
-     - Otherwise, set `right = mid - 1`<br>
-3) Return `-1` if the target is not found
+1) Initialize `rows = len(matrix)` and `cols = len(matrix[0])`<br>
+2) Initialize `r = 0` and `c = cols - 1`<br>
+3) While `r < rows`and `c >= 0`<br>
+   - If `matrix[r][c]` is equal to `target`, return `true`<br>
+   - If `matrix[r][c] > target`, indicating `target` is only possible in columns smaller than column`c`. So set`c = c - 1`<br>
+   - If `matrix[r][c] < target`, indicating `target` is only possible in rows larger than row`r`. So set`r = r + 1`<br>
+4) If the loop ends, return `false` (target not found)
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -86,9 +81,9 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N represents the length of `nums`
+Assume N represents the length of rows and M represents the length of columns of `matrix`
 
-- Time Complexity: O(log N)<br>
-  Binary search halves the search space in each iteration, leading to logarithmic time complexity.
+- Time Complexity: O(N + M)<br>
+  At each step, we eliminate either a row or a column. In the worst case, we move all the way down and all the way left.
 - Space Complexity: O(1)
   
