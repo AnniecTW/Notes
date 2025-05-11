@@ -3,7 +3,8 @@
 💡 Difficulty: Medium<br>
 🛠️ Topics: Sorting<br>
 
-============================================================================================<br>
+<hr>
+
 You are given an `m x n` integer matrix `matrix` with the following two properties:<br>
 
 - Each row is sorted in non-decreasing order.
@@ -12,8 +13,6 @@ Given an integer `target`, return `true` if `target` is in `matrix` or `false` o
 
 You must write a solution in O(log(m * n)) time complexity.<br>
 
-
- 
 
 Example 1:<br>
 ![mat](https://github.com/user-attachments/assets/288ce3cb-eb06-45d9-87c0-3e02d8246b23)
@@ -33,7 +32,9 @@ Constraints:<br>
 - n == matrix[i].length
 - 1 <= m, n <= 100
 - -10<sup>4</sup> < matrix[i][j], target < 10<sup>4</sup>
-===========================================================================================<br>
+
+<hr>
+
 ### UMPIRE Method:
 #### Understand
 
