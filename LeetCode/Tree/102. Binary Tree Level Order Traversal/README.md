@@ -85,6 +85,6 @@ Assume N represents the number of nodes
 
 - Time Complexity: O(N)<br>
   Every node is visited exactly once.
-- Space Complexity: O(N)
+- Space Complexity: O(N)<br>
   In the worst case, e.g. full binary tree, the queue may store up to N/2 nodes at the last level
 
