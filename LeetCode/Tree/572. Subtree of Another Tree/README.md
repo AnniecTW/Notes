@@ -108,7 +108,7 @@ Assume N represents the number of nodes in `root`, M represents the number of no
  Due to recursive call stack, space used is proportional to the height of the trees
 ===========================================================================================
 #### Serialization
-- Time Complexity: O(N * M)<br>
+- Time Complexity: O(N + M)<br>
   Each node is visited once during serialization, and substring search is O(N + M) with KMP or similar (naive is O(N * M))
 - Space Complexity: O(N + M)<br>
   Storing serialized strings of both trees.
