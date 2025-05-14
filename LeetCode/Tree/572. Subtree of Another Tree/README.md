@@ -59,35 +59,23 @@ Constraints:<br>
 > - Walk through a high level implementation with an existing diagram
 
 #### Recursion
-General Idea: Use a queue to traverse the tree level by level, storing values for each level in a temporary list
+General Idea: Check if two trees are identical by recursion. If current `root` fails, recurse into its left and right children and check again
 
-1) If `root` is empty, return `[]`
-2) Initialize `res = []` and `queue = deque([root])`
-3) While `queue` is not empty:<br>
-   a) Set `level_size = len(queue)` to control the number of interatations for the current level<br>
-   b) Initialize `level = []` to store nodes for current level<br>
-   c) Iterate `level_size` times:<br>
-      i) pop a node from `queue`, and append `node.val` to `level`
-      ii) if `node` has left child, append it to queue
-      iii) if `node` has right child, append it to queue
-   d) append `level` to `res` after finishing iteration for the current level
-4) Return `res`
+1) Define a recursive function `isSame(r, s)`, where `r` and `s` are two nodes passed into the function
+   a) If `r` and `s` are both `None`, indicating recursion is finished on both tree, return `True` <br>
+   b) If only one of the two trees completes recursion earlier than the other, indicating they are not identical, return `False`<br>
+   c) If `r.val` is not equal to `s.val`, return `False`<br>
+   d) If none of the above is true, recurse into the left and right children of current `root` and `subRoot` to continue comparison<br>
+2) If `root` is `None` but `subRoot` exists, return `False`
+3) Start with `root`, compare it to `subRoot` using function just defined.
+4) Return the result if the function returns `true`; otherwise, recrurse into children of `root` and compare them with current `subRoot` using recursion function
 
 ===========================================================================================
 #### Serialization
-General Idea: Use a queue to traverse the tree level by level, storing values for each level in a temporary list
+General Idea: Stringify both `root` and `subRoot`, then check if `subRoot` is a substring of `root`
 
-1) If `root` is empty, return `[]`
-2) Initialize `res = []` and `queue = deque([root])`
-3) While `queue` is not empty:<br>
-   a) Set `level_size = len(queue)` to control the number of interatations for the current level<br>
-   b) Initialize `level = []` to store nodes for current level<br>
-   c) Iterate `level_size` times:<br>
-      i) pop a node from `queue`, and append `node.val` to `level`
-      ii) if `node` has left child, append it to queue
-      iii) if `node` has right child, append it to queue
-   d) append `level` to `res` after finishing iteration for the current level
-4) Return `res`
+1) Generate strings of `root` tree and `subRoot` tree using pre-order traversal
+2) Check if string of `subRoot` is a substring of `root`, if so, then return `True`; otherwise, return `False`
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -101,10 +89,16 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N represents the number of nodes
+Assume N represents the number of nodes in `root`, M represents the number of nodes in `subRoot`, H1 represents the height of tree `root`, and H2 represents the height of tree `subRoot` 
 
-- Time Complexity: O(N)<br>
-  Every node is visited exactly once.
-- Space Complexity: O(N)<br>
-  In the worst case, e.g. full binary tree, the queue may store up to N/2 nodes at the last level
-
+#### Recursion
+- Time Complexity: O(N * M)<br>
+  Each node in `root` can be beginning of a recursion check, and each check cause O(M) run time
+- Space Complexity: O(max(H1, H2))<br>
+  The space is used by recursion stack, and it depends on the height of the larger tree
+===========================================================================================
+#### Serialization
+- Time Complexity: O(N + M)<br>
+  Every node in `root` and `subRoot` is visited exactly once.
+- Space Complexity: O(N + M)<br>
+  Every node value in `root` and `subRoot` is stored as strings.
