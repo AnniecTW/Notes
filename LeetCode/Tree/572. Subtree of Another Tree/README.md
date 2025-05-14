@@ -82,7 +82,7 @@ General Idea: Recursively check if two trees are identical. If the current `root
 #### Serialization
 General Idea: Serialize both trees using preorder traversal (including null markers), and check if the serialized `subRoot` string is a substring of `root`
 
-1) Define a function to serialize a tree using preorder traversal with null markers (`#`)
+1) Define a function to serialize a tree using preorder traversal with null markers (`|#|`)
 2) Serialize both `root` and `subRoot`
 3) Check if `subRoot_serialized` is a substring of `root_serialized`
 4) Return the result
