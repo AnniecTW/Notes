@@ -50,32 +50,42 @@ Constraints:<br>
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 1. Tree / Recursion
-   Use a inner recursive function to check if two trees are identical. If current `root` and `subRoot` are not identical, continue outer recursion into left and right children of current `root`
-2. Serialization / Stringify (Optimized in run time)
-   Transform tree of `root` and `subRoot` into string, simply check if the string of `subRoot` is a substring of `root`
+   Use an inner recursive function to check if two trees are identical. If current `root` and `subRoot` are not identical, continue outer recursion into left and right children of current `root`
+2. Serialization / Stringify
+   Transform both `root` and `subRoot` into string representations, simply check if the string of `subRoot` is a substring of `root`
    
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
 #### Recursion
-General Idea: Check if two trees are identical by recursion. If current `root` fails, recurse into its left and right children and check again
+General Idea: Recursively check if two trees are identical. If the current `root` doesn't match `subRoot`, recursively check its left and right children
 
-1) Define a recursive function `isSame(r, s)`, where `r` and `s` are two nodes passed into the function
-   a) If `r` and `s` are both `None`, indicating recursion is finished on both tree, return `True` <br>
-   b) If only one of the two trees completes recursion earlier than the other, indicating they are not identical, return `False`<br>
-   c) If `r.val` is not equal to `s.val`, return `False`<br>
-   d) If none of the above is true, recurse into the left and right children of current `root` and `subRoot` to continue comparison<br>
-2) If `root` is `None` but `subRoot` exists, return `False`
-3) Start with `root`, compare it to `subRoot` using function just defined.
-4) Return the result if the function returns `true`; otherwise, recrurse into children of `root` and compare them with current `subRoot` using recursion function
+1) Define a helper function `isSame(r, s)`:<br>
+   a) If both `r` and `s` are `None`, return `True`<br>
+      // Both trees finished traversing at the same time → same structure and values so far<br>
+      
+   b) If only one is `None`, return `False`<br>
+      // One tree ended early → not the same structure
+   
+   c) If `r.val != s.val`, return `False`<br>
+   d) Recursively check left and right subtrees: `isSame(r.left, s.left) and isSame(r.right, s.right)`<br>
+
+3) In main function:<br>
+   a) If `root` is `None`, return `False` (can't contain `subRoot`)<br>  
+   b) If `isSame(root, subRoot)` is `True`, return `True`<br>  
+   c) Else, recursively check `root.left` and `root.right`<br>  
+
+4) Return whether `subRoot` is found as a subtree in either branch
 
 ===========================================================================================
 #### Serialization
-General Idea: Stringify both `root` and `subRoot`, then check if `subRoot` is a substring of `root`
+General Idea: Serialize both trees using preorder traversal (including null markers), and check if the serialized `subRoot` string is a substring of `root`
 
-1) Generate strings of `root` tree and `subRoot` tree using pre-order traversal
-2) Check if string of `subRoot` is a substring of `root`, if so, then return `True`; otherwise, return `False`
+1) Define a function to serialize a tree using preorder traversal with null markers (`#`)
+2) Serialize both `root` and `subRoot`
+3) Check if `subRoot_serialized` is a substring of `root_serialized`
+4) Return the result
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -93,12 +103,12 @@ Assume N represents the number of nodes in `root`, M represents the number of no
 
 #### Recursion
 - Time Complexity: O(N * M)<br>
-  Each node in `root` can be beginning of a recursion check, and each check cause O(M) run time
+  For each of the N nodes in `root`, we may compare up to M nodes in `subRoot`.
 - Space Complexity: O(max(H1, H2))<br>
-  The space is used by recursion stack, and it depends on the height of the larger tree
+ Due to recursive call stack, space used is proportional to the height of the trees
 ===========================================================================================
 #### Serialization
-- Time Complexity: O(N + M)<br>
-  Every node in `root` and `subRoot` is visited exactly once.
+- Time Complexity: O(N * M)<br>
+  Each node is visited once during serialization, and substring search is O(N + M) with KMP or similar (naive is O(N * M))
 - Space Complexity: O(N + M)<br>
-  Every node value in `root` and `subRoot` is stored as strings.
+  Storing serialized strings of both trees.
