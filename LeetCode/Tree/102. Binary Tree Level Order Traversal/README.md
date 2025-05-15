@@ -63,9 +63,9 @@ General Idea: Use a queue to traverse the tree level by level, storing values fo
    a) Set `level_size = len(queue)` to control the number of interatations for the current level<br>
    b) Initialize `level = []` to store nodes for current level<br>
    c) Iterate `level_size` times:<br>
-      &ensp;&ensp;i) pop a node from `queue`, and append `node.val` to `level`<br>
-      &ensp;&ensp;ii) if `node` has left child, append it to queue<br>
-      &ensp;&ensp;iii) if `node` has right child, append it to queue<br>
+      &ensp;&ensp;&ensp;i) pop a node from `queue`, and append `node.val` to `level`<br>
+      &ensp;&ensp;&ensp;ii) if `node` has left child, append it to queue<br>
+      &ensp;&ensp;&ensp;iii) if `node` has right child, append it to queue<br>
    d) append `level` to `res` after finishing iteration for the current level<br>
 4) Return `res`<br>
     
