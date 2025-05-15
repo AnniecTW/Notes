@@ -63,11 +63,11 @@ General Idea: Use a queue to traverse the tree level by level, storing values fo
    a) Set `level_size = len(queue)` to control the number of interatations for the current level<br>
    b) Initialize `level = []` to store nodes for current level<br>
    c) Iterate `level_size` times:<br>
-      i) pop a node from `queue`, and append `node.val` to `level`
-      ii) if `node` has left child, append it to queue
-      iii) if `node` has right child, append it to queue
-   d) append `level` to `res` after finishing iteration for the current level
-4) Return `res`
+      &ensp;&ensp;i) pop a node from `queue`, and append `node.val` to `level`<br>
+      &ensp;&ensp;ii) if `node` has left child, append it to queue<br>
+      &ensp;&ensp;iii) if `node` has right child, append it to queue<br>
+   d) append `level` to `res` after finishing iteration for the current level<br>
+4) Return `res`<br>
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -84,7 +84,7 @@ see solution.py
 Assume N represents the number of nodes
 
 - Time Complexity: O(N)<br>
-  Every node is visited exactly once.
+  Every node is visited exactly once.<br>
 - Space Complexity: O(N)<br>
-  In the worst case, e.g. full binary tree, the queue may store up to N/2 nodes at the last level
+  In the worst case, e.g. full binary tree, the queue may store up to N/2 nodes at the last level<br>
 
