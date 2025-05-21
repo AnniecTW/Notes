@@ -31,7 +31,7 @@ Constraints:<br>
 - 0 <= Node.val <= 10<sup>4</sup>
 
 Follow up: If the BST is modified often (i.e., we can do insert and delete operations) and you need to find the kth smallest frequently, how would you optimize?
-
+      
 <hr>
 
 ### UMPIRE Method:
@@ -69,6 +69,17 @@ General Idea: Use in-order traversal to visit nodes in ascending order. Keep a c
 
 
 Follow up: If the BST is modified often (i.e., we can do insert and delete operations) and you need to find the kth smallest frequently, how would you optimize?
+
+
+Ans: 
+If we need to find the kth smallest element while insert and delete operations occurs often, a good approach is to augment the tree nodes with additional information.<br>
+We can maintain a `left_count` field in each node, which keeps track of the number of nodes in its left subtree.<br>
+When inserting or deleting nodes, we update this field.<br>
+- If `k == left_count + 1`, the current node is the kth smallest.
+- If `k <= left_count + 1`, recursively search the left subtree.
+- Otherwise, search the right subtree with `k - left_count - 1`.<br>
+
+With this augmentation, all operations, including insertion, deletion, and findKthSmallest, can be done in O(logN) time on a balanced BST.<br>
 
 
 ### Implement
