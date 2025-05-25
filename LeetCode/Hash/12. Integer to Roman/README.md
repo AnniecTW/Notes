@@ -98,26 +98,28 @@ Constraints:<br>
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 1. Hash map / Math
-   - Since Roman numerals consist of symbols from larger to smaller values, we can simply subtract numbers in a hash map in descending order and replace them with their corresponding symbols.
+   - Roman numerals are composed of symbols representing specific integer values, arranged in descending order.
+   - Since the conversion follows a greedy pattern — always subtracting the largest possible value — we can use a hash map and iterate through it in descending order to build the result string.
    
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: First, define a hash map with integer numbers and Roman symbols as key-value pairs. Subtract numbers in descending order in the map until `num` is smaller than the current number and replace them with their corresponding symbols.<br>
+General Idea: Use a hash map that maps integer values to their corresponding Roman numeral symbols. Traverse the map in descending order, repeatedly subtracting values from `num` and appending symbols to the result until `num` becomes 0.<br>
 
-1) Build a hash map:<br>
-   `iToR = {<br>
-            1000: "M", 900: "CM", 500: "D", 400: "CD",<br>
-            100: "C", 90: "XC", 50: "L", 40: "XL",<br>
-            10: "X", 9: "IX", 5: "V", 4: "IV", 1: "I"<br>
-        }`<br>
-3) Initialize `res = ""`
+1) Build a hash map in descending order:<br>
+   ```python
+   iToR = {
+   1000: "M", 900: "CM", 500: "D", 400: "CD",
+   100: "C", 90: "XC", 50: "L", 40: "XL",
+   10: "X", 9: "IX", 5: "V", 4: "IV", 1: "I"
+   }
+3) Initialize the result string: `res = ""`
 4) Iterate through each key `val` in `iToR`:
-   - While current `num >= val`:<br>
-    a) Update `res`: `res += iToR[val]`<br>
-    b) Subtract `num` with current `val`
-6) After the `num` is subtracted to 0, return `res`
+   - While `num >= val`:<br>
+    a) Append the Roman symbol: `res += iToR[val]`<br>
+    b) Subtract the value from `num`: `num -= val`
+6) Return `res` when `num` reaches 0
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -133,6 +135,8 @@ see solution.py
 
 
 - Time Complexity: O(N + M)<br>
-  The for loop iterates constant items in the map. For while loop, the worst case is when the digital number equals to `8`, it takes four loop to finish current step. Since the limitation of `num` is `3999`, time complexity can be seen as O(1). <br>
+  The number of iterations is bounded by the input range (1–3999), and the hash map contains only 13 entries.<br>
+  Although the inner while loop may run multiple times (e.g., for `num = 8`, it runs 1 time for `5` and 3 times for `1`), this total number is bounded and does not scale with input size. So overall, it's constant time.<br>
+  
 - Space Complexity: O(1)<br>
-  The key-value pairs in hash map take up constant space.<br>
+  The hash map has a fixed size and the result string grows linearly with the number of Roman symbols (at most around 15 for `num = 3888`), which is also bounded. So, it's constant space.<br>
