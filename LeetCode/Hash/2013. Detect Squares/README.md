@@ -95,16 +95,21 @@ General Idea: Use nested `collections.defaultdict` to count the points' frequenc
 
     def __init__(self): self.pointCount = defaultdict(lambda: defaultdict(int))
    ```
-4) 
+4) Increment the frequency of a given point by 1 in each `add` operation 
    ```python
    def add(self, point: List[int]) -> None:
         self.pointCount[point[0]][point[1]] += 1
    ```
    
-6) `magazine_count = Counter(magazine)`
-7) Iterate each character (key) and its frequency (value) in `ransom_count.items()`
+6) In `count` operation, first initailize the result `res = 0`, then get the coordinate through (x, y)
+   ```python
+   def count(self, point: List[int]) -> int:
+        res = 0
+        x, y = point
+   ```
+8) Iterate each character (key) and its frequency (value) in `ransom_count.items()`
    - if the frequency of the corresponding character in `magazine_count` is less, return `False`
-8) If all the charaters pass, return `True`
+9) If all the charaters pass, return `True`
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
