@@ -78,7 +78,7 @@ see solution.py
 Assume N is the length of `ransomNote`, and M is the length of `magazine`
 
 - Time Complexity: O(N + M)<br>
-  Counter` scans through `ransomNote` and `magazine` once, resulting in linear time.<br>
+  `Counter` scans through `ransomNote` and `magazine` once, resulting in linear time.<br>
 - Space Complexity: O(N + M)<br>
   In the worst case, all characters are unique, so two separate counters may store up to N + M elements.<br>
   If there is only lowercase English letters, this can be considered O(1).<br>
