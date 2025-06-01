@@ -124,6 +124,6 @@ see solution.py
 Assume N is the number of rows and M is the number of columns in the matrix.
 
 - Time Complexity: O(N * M)<br>
-  We iterate through `matrix` and also the first row and column twice, so it's O(M * N).<br>
+  We iterate through the matrix a constant number of times, so the time complexity is O(M * N)<br>
 - Space Complexity: O(1)<br>
   We use the matrix cell itself as markers, so it takes up constant space.<br>
