@@ -63,7 +63,7 @@ Could you devise a constant space solution?
     ]
 
    ```
-5. Edge case -
+4. Edge case -
    ```python
     Input: matrix = [[1]]
     Output: [[1]]
@@ -72,22 +72,42 @@ Could you devise a constant space solution?
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 1. Matrix / Set
-   -  more staightforward approach is to use two sets to record the indices of rows and cols which have zero(s) inside.
+   - A straightforward approach is to use two sets to record the indices of rows and columns that contain zero(s).
 2. Matrix / In-plcae replacement
-   - Alternatviely, we can use the cells in first row and the first column as markers. Before mark the cells with zero in the same row or column, we have to check wether the first row or column contains zero and record it. 
+   - Alternatviely, we can use the cells in first row and the first column as markers. Before mark the cells with zero on the same row or column, we have to check wether the first row or column contains zero and record it. 
     
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Use Python's `collections.Counter` to count the character frequencies in `ransomNote` and `magazine`, and then compare them.<br>
+General Idea: Use the first row and column as markers to record the row or column having zero(s). Before iteration to replace the value in cells, use a boolean flag to record wether the first row or column should be turned into zero.<br>
 
-1) `from collections import Counter`
-2) `ransom_count = Counter(ransomNote)`
-3) `magazine_count = Counter(magazine)`
-4) Iterate each character (key) and its frequency (value) in `ransom_count.items()`
-   - if the frequency of the corresponding character in `magazine_count` is less, return `False`
-5) If all the charaters pass, return `True`
+1) Set `row = len(matrix), col = len(matrix[0])`
+2) Iterate the first row and column and use flags to record if there are any zeros
+   ```python
+   fisrt_row_zero = any(matrix[0][c] == 0 for c in range(col))
+   fisrt_col_zero = any(matrix[r][0] == 0 for r in range(row))
+4) Iterate the rest of the matrix and mark the row or column if it contains any zero
+   ```python
+   for r in range(1, row):
+       for c in range(1, col):
+           if matrix[r][c] == 0:
+               matrix[r][0] = 0
+               matrix[0][c] = 0
+6) Iterate again and set the row and column having marked cell to zero
+   ```python
+   for r in range(1, row):
+       for c in range(1, col):
+           if matrix[r][0] == 0 or matrix[0][c] == 0:
+               matrix[r][c] = 0
+8) Finally set the first row or column to zero if it contains zero
+   ```python
+   if fisrt_row_zero:
+            for c in range(col):
+                matrix[0][c] = 0
+        if fisrt_col_zero:
+            for r in range(row):
+                matrix[r][0] = 0
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -101,10 +121,9 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N is the length of `ransomNote`, and M is the length of `magazine`
+Assume N is the length of `matrix`, and M is the length of `matrix[0]`
 
-- Time Complexity: O(N + M)<br>
-  `Counter` scans through `ransomNote` and `magazine` once, resulting in linear time.<br>
-- Space Complexity: O(N + M)<br>
-  In the worst case, all characters are unique, so two separate counters may store up to N + M elements.<br>
-  If there is only lowercase English letters, this can be considered O(1).<br>
+- Time Complexity: O(N * M)<br>
+  We iterate through `matrix` and also the first row and column twice, so it's O(M * N).<br>
+- Space Complexity: O(1)<br>
+  We use the matrix cell itself as markers, so it takes up constant space.<br>
