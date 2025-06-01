@@ -74,33 +74,33 @@ Could you devise a constant space solution?
 1. Matrix / Set
    - A straightforward approach is to use two sets to record the indices of rows and columns that contain zero(s).
 2. Matrix / In-plcae replacement
-   - Alternatviely, we can use the cells in first row and the first column as markers. Before mark the cells with zero on the same row or column, we have to check wether the first row or column contains zero and record it. 
+   - Alternatviely, we can use the first row and column cells as markers. Before marking, we check whether the first row or column originally contained any zero and store that information in boolean flags
     
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Use the first row and column as markers to record the row or column having zero(s). Before iteration to replace the value in cells, use a boolean flag to record wether the first row or column should be turned into zero.<br>
+General Idea: Use the first row and column as markers to record which rows and columns should be zeroed. Before modifying the matrix, use boolean flags to record whether the first row or column originally contained any zeros.<br>
 
 1) Set `row = len(matrix), col = len(matrix[0])`
 2) Iterate the first row and column and use flags to record if there are any zeros
    ```python
    fisrt_row_zero = any(matrix[0][c] == 0 for c in range(col))
    fisrt_col_zero = any(matrix[r][0] == 0 for r in range(row))
-4) Iterate the rest of the matrix and mark the row or column if it contains any zero
+3) Iterate the rest of the matrix and mark the row or column if it contains any zero
    ```python
    for r in range(1, row):
        for c in range(1, col):
            if matrix[r][c] == 0:
                matrix[r][0] = 0
                matrix[0][c] = 0
-6) Iterate again and set the row and column having marked cell to zero
+4) Iterate again and set the row and column having marked cell to zero
    ```python
    for r in range(1, row):
        for c in range(1, col):
            if matrix[r][0] == 0 or matrix[0][c] == 0:
                matrix[r][c] = 0
-8) Finally set the first row or column to zero if it contains zero
+5) Finally set the first row or column to zero if it contains zero
    ```python
    if fisrt_row_zero:
             for c in range(col):
@@ -121,7 +121,7 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N is the length of `matrix`, and M is the length of `matrix[0]`
+Assume N is the number of rows and M is the number of columns in the matrix.
 
 - Time Complexity: O(N * M)<br>
   We iterate through `matrix` and also the first row and column twice, so it's O(M * N).<br>
