@@ -121,9 +121,9 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume N is the number of rows and M is the number of columns in the matrix.
+Assume M is the number of rows and N is the number of columns in the matrix.
 
-- Time Complexity: O(N * M)<br>
+- Time Complexity: O(M * N)<br>
   We iterate through the matrix a constant number of times, so the time complexity is O(M * N)<br>
 - Space Complexity: O(1)<br>
   We use the matrix cell itself as markers, so it takes up constant space.<br>
