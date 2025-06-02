@@ -46,7 +46,7 @@ Could you devise a constant space solution?
 > - Ask clarifying questions and use examples to understand what the interviewer wants out of this problem.
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
-1. Can `m` and `n` be 0?<br>
+1. Can `matrix` be empty or contain empty rows (e.g., [] or [[]])?<br>
 2. Any requirements on time/space complexity?<br>
 3. Happy path -
    ```python
