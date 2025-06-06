@@ -11,15 +11,14 @@ You have to rotate the image [in-place](https://en.wikipedia.org/wiki/In-place_a
 
 
 Example 1:<br>
-![mat1](https://github.com/user-attachments/assets/89d15b46-d99d-4988-827c-ce963574000e)
-
+<img src="https://github.com/user-attachments/assets/89d15b46-d99d-4988-827c-ce963574000e" alt="9 * 9 matrix" width="350" />
 
 >Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]<br>
 Output: [[7,4,1],[8,5,2],[9,6,3]]<br>
 
 
 Example 2:<br>
-![mat2](https://github.com/user-attachments/assets/f8b11079-8733-48f7-967a-d304b2016c6a)
+<img src="https://github.com/user-attachments/assets/f8b11079-8733-48f7-967a-d304b2016c6a" alt="4 * 4 matrix" width="380"/>
 
 
 >Input: matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]<br>
