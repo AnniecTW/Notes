@@ -1,7 +1,7 @@
 ## 79. Word Search
 🔗 Link: [Word Search](https://leetcode.com/problems/word-search/description/)<br>
 💡 Difficulty: Medium<br>
-🛠️ Topics: Matrix<br>
+🛠️ Topics: Matrix / Backtracking<br>
 
 <hr>
 
