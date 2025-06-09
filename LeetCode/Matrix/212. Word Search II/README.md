@@ -78,7 +78,7 @@ Constraints:<br>
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: First use **Trie** to store all entries in words. Then iterate through each cell in `board` and call dfs to search possible paths containing valid words.<br>
+General Idea: We first build a Trie to store all words for efficient prefix lookup. Then, we iterate through each cell in the board and perform DFS to explore all valid paths.<br>
 
 1) Build a Trie from the word list
    ```python
