@@ -53,7 +53,7 @@ Constraints:<br>
 3. Can I modify the orginal matrix, or should I treat it as read-only?
 4. Happy path -
    ```python
-    Input: matrix = [
+    Input: board = [
       ['A','A','B'],
       ['B','D','E'],
       ['C','F','A']
@@ -64,7 +64,7 @@ Constraints:<br>
    ```
 5. Edge case -
    ```python
-    Input: matrix = [['A']], word = 'A'
+    Input: board = [['A']], word = 'A'
     Output: true
    ```
 
