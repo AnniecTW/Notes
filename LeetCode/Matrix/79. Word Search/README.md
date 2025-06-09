@@ -109,7 +109,7 @@ General Idea: To prune unnecessary operations, we reverse `word` if the number o
       - current cell doesn't match the required letter in `word`
       ```python
       if not (0 <= r < m) or not (0 <= c < n) or (r, c) in visited or board[r][c] != word[i]:
-                return False
+          return False
       ```
       <br>
       
