@@ -104,7 +104,7 @@ General Idea: To prune unnecessary operations, we reverse `word` if the number o
 5) Defince `dfs(r, c ,i)` with backtracking
    a) Base case: If we finish looking for the last character, return `True`<br>
    b) Prune if
-      - `r` and `c` are out of bounds
+      - `r` or `c` is out of bounds
       - current cell visited
       - current cell doesn't match the required letter in `word`
       ```python
