@@ -101,7 +101,7 @@ General Idea: To prune unnecessary operations, we reverse `word` if the number o
    ```python
     if counter[word[0]] > counter[word[-1]]:
         word = word[::-1]
-5) Defince `dfs(r, c ,i)` for backtracking
+5) Defince `dfs(r, c ,i)` with backtracking
    a) Base case: If we finish looking for the last character, return `True`<br>
    b) Prune if
       - `r` and `c` are out of bounds
