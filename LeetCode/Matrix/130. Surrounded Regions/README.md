@@ -42,8 +42,8 @@ Constraints:<br>
 > - Ask clarifying questions and use examples to understand what the interviewer wants out of this problem.
 > - Choose a “happy path” test input, different than the one provided, and a few edge case inputs. 
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
-1. Can `board` be empty or contain empty rows (e.g., [] or [[]])?<br>
-2. Any constraints on time/space complexity?<br>
+1. Can `board` be empty or contain empty rows (e.g., `[]` or `[[]]`)?<br>
+2. Are there any constraints on time and space complexity?<br>
 3. Happy path -
    ```python
     Input: board = [
@@ -67,60 +67,51 @@ Constraints:<br>
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. Matrix / Backtracking / DFS
-   - We can first mark the cells which aren't captured by performing dfs on cells on edges, and then find those cells connected four directonally.<br>
-     The left unmarked cells are not captured and should be changed to `'X'`.<br>
+1. Matrix / DFS
+   - We first mark the `'O'` regions that are **not surrounded** by `'X'` by performing DFS from the boundary cells. These are the `'O'`s that should remain unchanged.<br>
 
    
 ### Plan
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: Perform dfs on cells on edges and mark those cell with 'O' as well as those connected four directionally. Iterate through `board`, replace the left `'O'` with `'X'`, and set `'*'` back to `'O'`.
+General Idea: Perform dfs on cells from the boundary and mark those cell with 'O' as well as those connected four directionally. Iterate through `board`, replace the left `'O'` with `'X'`, and set `'*'` back to `'O'`.
 
-1) Set `visited = set()`
-2) Set `m, n = len(board), len(board[0])`
-3) Use a counter to calculate the number of each letter in `word`
-   ```python
-   for c in word:
-       counter[c] = 1 + counter.get(c, 0)
-4) If the nubmer of the first character is greater than the last charatcter in `word`, reverse the word
-   ```python
-    if counter[word[0]] > counter[word[-1]]:
-        word = word[::-1]
-5) Defince `dfs(r, c ,i)` for backtracking
-   a) Base case: If we finish looking for the last character, return `True`<br>
-   b) Prune if
-      - `r` and `c` are out of bounds
-      - current cell visited
-      - current cell doesn't match the required letter in `word`
+1) Set `rows, cols = len(board), len(board[0])`
+2) Define `dfs(r, c)`
+   a) Return if:
+      - `r` or `c` is out of bounds
+      - the current cell is not `'O'`
       ```python
-      if not (0 <= r < m) or not (0 <= c < n) or (r, c) in visited or board[r][c] != word[i]:
-                return False
+      if not (0 <= r < rows and 0 <= c < cols) or board[r][c] != 'O':
+          return
       ```
       <br>
       
-   c) Add `(r, c)` to `visited`, recursively explore four directions<br>
-      Backtrack by removing `(r, c)`<br>
+   b) Mark visited cells and go to adjacent cells four directionally<br>
       ```python
-      visited.add((r, c))
-      res = (
-          dfs(r - 1, c, i + 1) or
-          dfs(r + 1, c, i + 1) or
-          dfs(r, c - 1, i + 1) or
-          dfs(r, c + 1, i + 1)
-      )
-      visited.remove((r, c))
+      board[r][c] = '*'
+      dfs(r+1, c)
+      dfs(r-1, c)
+      dfs(r, c+1)
+      dfs(r, c-1)
       ```
-   d) Return the combined result from all directions<br>
-   
-6) Traverse through the `board`, if the current path explored with `dfs` is found valid, return `True`
+3) Perform DFS from the boundary cells (first and last rows & columns)
    ```python
-   for row in range(m):
-       for col in range(n):
-           if dfs(row, col, 0):
-               return True
-8) If no valid path is found, return `False`
+   for r in range(rows):
+       dfs(r, 0)
+       dfs(r, cols - 1)
+   for c in range(cols):
+       dfs(0, c)
+       dfs(rows - 1, c)
+4) Replace the left `'O'` with `'X'` and restore `'*'` to `'O'`
+   ```python
+   for r in range(rows):
+       for c in range(cols):
+           if board[r][c] == 'O':
+                board[r][c] = 'X'
+           elif board[r][c] == '*':
+                board[r][c] = 'O'
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
@@ -134,9 +125,9 @@ see solution.py
 > - Finish by giving space and run-time complexity
 > - Discuss any pros and cons of the solution
 
-Assume M is the nubmer of rows, N is the number of columns of `board`, and L is the length of `word`
+Assume M is the number of rows and N is the number of columns in the `board`
 
-- Time Complexity: O(M * N * 3<sup>L</sup>)<br>
-  For each of the M * N cells, we may start a DFS. At each step in the DFS, we can explore up to 3 directions (can't revisit the previous cell), and the maximum depth of the DFS is `L` (the length of the `word`). So, the overall time complexity is O(M * N * 3<sup>L</sup>). <br>
-- Space Complexity: O(L)<br>
-  The recursion stack and `visited` set both take up to O(L) space in the worst case. If we can modify the `board`, we can eliminate the `visited` set entirely and mark visited cells in-place (e.g., replacing with '#' temporarily), which reduces memory usage.<br>
+- Time Complexity: O(M * N)<br>
+  We traverse `board` twice and each cell is explored at most once during each traversal. <br>
+- Space Complexity: O(M * N)<br>
+  The recursion stack mitht take up to O(M * N) space in the worst case (e.g., all cells are `'O'`).<br>
