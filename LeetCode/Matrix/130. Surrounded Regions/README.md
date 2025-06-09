@@ -44,7 +44,8 @@ Constraints:<br>
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
 1. Can `board` be empty or contain empty rows (e.g., `[]` or `[[]]`)?<br>
 2. Are there any constraints on time and space complexity?<br>
-3. Happy path -
+3. Could the `board` be large enough to exceed Python’s recursion limit?
+4. Happy path -
    ```python
     Input: board = [
       ['X','X','X'],
@@ -59,7 +60,7 @@ Constraints:<br>
     ]
 
    ```
-4. Edge case -
+5. Edge case -
    ```python
     Input: board = [['O']]
     Output: [['O']]
