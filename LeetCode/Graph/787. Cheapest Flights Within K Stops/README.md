@@ -72,9 +72,9 @@ Constraints:<br>
    
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. BFS / Queue
-   - Pattern: Cycle detection in an undirected graph
-   - Strategy: Union-Finde (Disjoint Set Union) with path compression
+1. BSS + Prioirity queue (like Dijkstra) / BFS + Queue
+   - Pattern: 
+   - Strategy: If we want to use Dijkstra's algorithm, it is needed to store `(node, stops)` to avoid 
    
 ### Plan
 > - Sketch visualizations and write pseudocode
