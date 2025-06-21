@@ -1,34 +1,23 @@
-# optimized Dijkstra's algorithm
-import heapq
-from collections import defaultdict
-
+from collections import defaultdict, deque
 class Solution:
-    def findCheapestPrice(self, n, flights, src, dst, k):
-        # build graph: graph[from] = [(to, price)]
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
         graph = defaultdict(list)
-        for u, v, w in flights:
-            graph[u].append((v, w))
-        
-        # (cost, src, stops)
-        heap = [(0, src, 0)]
-        
-        # record visited (node, stops) 
-        visited = dict()
+        cost = [float('inf') for _ in range(n)] # record the lowest cost from src to dst within k stops
+        cost[src] = 0
 
-        while heap:
-            cost, city, stops = heapq.heappop(heap)
+        for s, d, p in flights:
+            graph[s].append((d, p))
 
-            if city == dst:
-                return cost
-
-            if (city, stops) in visited and visited[(city, stops)] <= cost:
-                continue
-            visited[(city, stops)] = cost
+        queue = deque([(0, src, 0)]) # price, node, stops
+        while queue:
+            price, node, stops = queue.popleft()
 
             if stops > k:
-                continue
+                break
 
-            for neighbor, price in graph[city]:
-                heapq.heappush(heap, (cost + price, neighbor, stops + 1))
+            for d, p in graph[node]:
+                if cost[d] > p + price:
+                    cost[d] = p + price
+                    queue.append((p + price, d, stops + 1))
         
-        return -1
+        return -1 if cost[dst] == float('inf') else cost[dst]
