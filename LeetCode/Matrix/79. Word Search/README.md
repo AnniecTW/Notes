@@ -11,20 +11,20 @@ The word can be constructed from letters of sequentially adjacent cells, where a
 
 
 Example 1:<br>
-<img src="https://github.com/user-attachments/assets/528ef70d-2fa5-4912-951a-021dda4e73e7" alt="9 * 9 matrix" width="300" />
+<img src="https://github.com/user-attachments/assets/528ef70d-2fa5-4912-951a-021dda4e73e7" alt="9 * 9 matrix" width="250" />
 
 >Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"<br>
 Output: true<br>
 
 
 Example 2:<br>
-<img src="https://github.com/user-attachments/assets/214e91ef-d409-45ff-acc2-4a374994d211" alt="4 * 4 matrix" width="300"/>
+<img src="https://github.com/user-attachments/assets/214e91ef-d409-45ff-acc2-4a374994d211" alt="4 * 4 matrix" width="250"/>
 
 >Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "SEE"<br>
 Output: true<br>
 
 Example 3:<br>
-<img src="https://github.com/user-attachments/assets/1a26ceb0-1b7c-4b36-aa6b-b182e304c34e" alt="4 * 4 matrix" width="300"/>
+<img src="https://github.com/user-attachments/assets/1a26ceb0-1b7c-4b36-aa6b-b182e304c34e" alt="4 * 4 matrix" width="250"/>
 
 >Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"<br>
 Output: false<br>
