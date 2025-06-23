@@ -1,44 +1,46 @@
-## 79. Word Search
-🔗 Link: [Word Search](https://leetcode.com/problems/word-search/description/)<br>
-💡 Difficulty: Medium<br>
-🛠️ Topics: Matrix / Backtracking<br>
+## 329. Longest Increasing Path in a Matrix
+🔗 Link: [Longest Increasing Path in a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/)<br>
+💡 Difficulty: Hard<br>
+🛠️ Topics: Matrix / Memoization<br>
 
 <hr>
 
-Given an `m x n` grid of characters `board` and a string `word`, return `true` if `word` exists in the grid.
+Given an `m x n` integers `matrix`, return the length of the longest increasing path in `matrix`.
 
-The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.<br>
+From each cell, you can either move in four directions: left, right, up, or down. You **may not** move **diagonally** or move **outside the boundary** (i.e., wrap-around is not allowed).<br>
 
 
 Example 1:<br>
-<img src="https://github.com/user-attachments/assets/528ef70d-2fa5-4912-951a-021dda4e73e7" alt="9 * 9 matrix" width="250" />
 
->Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"<br>
-Output: true<br>
+<img src="https://github.com/user-attachments/assets/e3475fea-68c3-460b-9d84-d2e492ff5e5f" alt="9 * 9 matrix" width="250" />
+
+>Input: matrix = [[9,9,4],[6,6,8],[2,1,1]]<br>
+Output: 4<br>
+Explanation: The longest increasing path is [1, 2, 6, 9].<br>
 
 
 Example 2:<br>
-<img src="https://github.com/user-attachments/assets/214e91ef-d409-45ff-acc2-4a374994d211" alt="4 * 4 matrix" width="250"/>
 
->Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "SEE"<br>
-Output: true<br>
+<img src="https://github.com/user-attachments/assets/4eee93b5-a254-4bcf-ba26-e5fb1f575684" alt="4 * 4 matrix" width="250"/>
+
+>Input: matrix = [[3,4,5],[3,2,6],[2,2,1]]<br>
+Output: 4<br>
+Explanation: The longest increasing path is [3, 4, 5, 6].<br>
+Moving diagonally is not allowed.<br>
+
 
 Example 3:<br>
-<img src="https://github.com/user-attachments/assets/1a26ceb0-1b7c-4b36-aa6b-b182e304c34e" alt="4 * 4 matrix" width="250"/>
 
->Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"<br>
-Output: false<br>
+>Input: matrix = [[1]]<br>
+Output: 1<br>
 
 
 Constraints:<br>
 
 - m == board.length
 - n = board[i].length
-- 1 <= m, n <= 6
-- 1 <= word.length <= 15
-- board and word consists of only lowercase and uppercase English letters.
-
-**Follow up**: Could you use search pruning to make your solution faster with a larger board?
+- 1 <= m, n <= 200
+- 0 <= matrix[i][j] <= 2<sup>31</sup> - 1
 
 <hr>
 
@@ -53,9 +55,9 @@ Constraints:<br>
 3. Happy path -
    ```python
     Input: matrix = [
-      ['1','2','3'],
-      ['4','5','4'],
-      ['1','7','6']
+      [1,2,3],
+      [4,5,4],
+      [1,7,6]
     ]
     Output: 6
 
@@ -77,11 +79,8 @@ Constraints:<br>
 
 General Idea: We iterate `matrix` with each node as a starting point and perform DFS with memoization. Then we get the length of longest path by computing the maximum value stored in `memo`.
 
-1) Edge case:
-   ```python
-   if not matrix or not matrix[0]:
-       return 0
-2) Set `rows, cols = len(matrix), len(matrix[0])`
+1) Check if matrix is empty or has no rows → return 0
+2) Use a memoization matrix `memo[i][j]` to store the longest increasing path starting at `(i, j)`
 3) Initialize `memo = [[0] * cols for _ in range(rows)]`
 4) Define DFS function:
    - If the cell is visited, return it's corresponding result
@@ -91,14 +90,14 @@ General Idea: We iterate `matrix` with each node as a starting point and perform
    ```
    - Set `max-len = 1` as at least one step starting from this cell
    - Move in four directions and update `max_len` if the condition is valid
-   ```python
-    max_len = 1
-
-    for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-        ni, nj = i + dx, j + dy
-        if (0 <= ni < rows and 0 <= nj < cols and matrix[ni][nj] > matrix[i][j]): 
+     ```python
+     max_len = 1
+      
+     for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+         ni, nj = i + dx, j + dy
+         if (0 <= ni < rows and 0 <= nj < cols and matrix[ni][nj] > matrix[i][j]): 
             max_len = max(max_len, 1 + dfs(ni, nj))
-   ```
+      ```
    - Memoization:
      ```python
      memo[i][j] = max_len  # memoization
@@ -122,7 +121,7 @@ see solution.py
 
 Assume M is the nubmer of rows, N is the number of columns of `matrix`
 
-- Time Complexity: O(M * N * 3<sup>L</sup>)<br>
+- Time Complexity: O(M * N)<br>
   We visit each node exactly once with the help of memoization while exploration. <br>
-- Space Complexity: O(L)<br>
+- Space Complexity: O(M * N)<br>
   O(M * N) for both maxium recursion stack depth and memoization.
