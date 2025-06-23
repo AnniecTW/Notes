@@ -75,51 +75,38 @@ Constraints:<br>
 > - Sketch visualizations and write pseudocode
 > - Walk through a high level implementation with an existing diagram
 
-General Idea: We iterate the entire `matrix` with each node as a starting point and perform DFS with memoization.
+General Idea: We iterate `matrix` with each node as a starting point and perform DFS with memoization. Then we get the length of longest path by computing the maximum value stored in `memo`.
 
-1) Set `visited = set()`
-2) Set `m, n = len(board), len(board[0])`
-3) Use a counter to calculate the number of each letter in `word`
+1) Edge case:
    ```python
-   for c in word:
-       counter[c] = 1 + counter.get(c, 0)
-4) If the nubmer of the first character is greater than the last charatcter in `word`, reverse the word
+   if not matrix or not matrix[0]:
+       return 0
+2) Set `rows, cols = len(matrix), len(matrix[0])`
+3) Initialize `memo = [[0] * cols for _ in range(rows)]`
+4) Define DFS function:
+   - If the cell is visited, return it's corresponding result
    ```python
-    if counter[word[0]] > counter[word[-1]]:
-        word = word[::-1]
-5) Defince `dfs(r, c ,i)` with backtracking
-   a) Base case: If we finish looking for the last character, return `True`<br>
-   b) Prune if
-      - `r` or `c` is out of bounds
-      - current cell visited
-      - current cell doesn't match the required letter in `word`
-      ```python
-      if not (0 <= r < m) or not (0 <= c < n) or (r, c) in visited or board[r][c] != word[i]:
-          return False
-      ```
-      <br>
-      
-   c) Add `(r, c)` to `visited`, recursively explore four directions<br>
-      Backtrack by removing `(r, c)`<br>
-      ```python
-      visited.add((r, c))
-      res = (
-          dfs(r - 1, c, i + 1) or
-          dfs(r + 1, c, i + 1) or
-          dfs(r, c - 1, i + 1) or
-          dfs(r, c + 1, i + 1)
-      )
-      visited.remove((r, c))
-      ```
-   d) Return the combined result from all directions<br>
+   if memo[i][j]: 
+       return memo[i][j]
+   ```
+   - Set `max-len = 1` as at least one step starting from this cell
+   - Move in four directions and update `max_len` if the condition is valid
+   ```python
+    max_len = 1
+
+    for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+        ni, nj = i + dx, j + dy
+        if (0 <= ni < rows and 0 <= nj < cols and matrix[ni][nj] > matrix[i][j]): 
+            max_len = max(max_len, 1 + dfs(ni, nj))
+   ```
+   - Memoization:
+     ```python
+     memo[i][j] = max_len  # memoization
+     ```
+   - Return `max_len`
+     
+5) Return `max(dfs(i, j) for i in range(rows) for j in range(cols))`
    
-6) Traverse through the `board`, if the current path explored with `dfs` is found valid, return `True`
-   ```python
-   for row in range(m):
-       for col in range(n):
-           if dfs(row, col, 0):
-               return True
-8) If no valid path is found, return `False`
     
 ### Implement
 > - Implement the solution (make sure to know what level of detail the interviewer wants)
