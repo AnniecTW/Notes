@@ -59,7 +59,7 @@ Constraints:<br>
       [4,5,4],
       [1,7,6]
     ]
-    Output: 6
+    Output: 6 # one possible path: 1 → 2 → 3 → 4 → 5 → 7
 
    ```
 5. Edge case -
@@ -70,8 +70,10 @@ Constraints:<br>
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
-1. Memoization / DFS
-   - Since we may visited same postion from different starting nodes, we can use dfs with memoization to record the longest increasing path of explored nodes. 
+1. DFS + Memoization
+   - Since the same cell might be visited multiple times from different paths, we use **DFS** to explore all valid increasing paths, and **memoization** to cache the longest path starting from each cell
+   - This pattern avoids redundant computation and ensures that each cell is computed only once
+   - BFS is less ideal here since we care about increasing order, not shortest path by level
 
 ### Plan
 > - Sketch visualizations and write pseudocode
@@ -79,32 +81,16 @@ Constraints:<br>
 
 General Idea: We iterate `matrix` with each node as a starting point and perform DFS with memoization. Then we get the length of longest path by computing the maximum value stored in `memo`.
 
-1) Check if matrix is empty or has no rows → return 0
+1) Check if `matrix` is empty or has no rows → return 0
 2) Use a memoization matrix `memo[i][j]` to store the longest increasing path starting at `(i, j)`
-3) Initialize `memo = [[0] * cols for _ in range(rows)]`
+3) DFS logic:
 4) Define DFS function:
-   - If the cell is visited, return it's corresponding result
-   ```python
-   if memo[i][j]: 
-       return memo[i][j]
-   ```
-   - Set `max-len = 1` as at least one step starting from this cell
-   - Move in four directions and update `max_len` if the condition is valid
-     ```python
-     max_len = 1
-      
-     for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-         ni, nj = i + dx, j + dy
-         if (0 <= ni < rows and 0 <= nj < cols and matrix[ni][nj] > matrix[i][j]): 
-            max_len = max(max_len, 1 + dfs(ni, nj))
-      ```
-   - Memoization:
-     ```python
-     memo[i][j] = max_len  # memoization
-     ```
-   - Return `max_len`
-     
-5) Return `max(dfs(i, j) for i in range(rows) for j in range(cols))`
+   - If current cell's result is already computed → return memo
+   - Else, try moving in four directions
+   - Only move to a neighbor `(ni, nj)` if `matrix[ni][nj] > matrix[i][j]`
+   - Recursively compute path from `(ni, nj)` and take the max path length
+   - Memoize result for `(i, j)` before returning
+5) Loop over all cells, run `dfs(i, j)`, and return the maximum value
    
     
 ### Implement
@@ -122,6 +108,6 @@ see solution.py
 Assume M is the nubmer of rows, N is the number of columns of `matrix`
 
 - Time Complexity: O(M * N)<br>
-  We visit each node exactly once with the help of memoization while exploration. <br>
+  Each cell is visited only once due to memoization. Each DFS has at most 4 directions → still constant time per cell overall <br>
 - Space Complexity: O(M * N)<br>
-  O(M * N) for both maxium recursion stack depth and memoization.
+  `memo` uses O(M × N). Call stack may go up to O(M × N) in the worst case.
