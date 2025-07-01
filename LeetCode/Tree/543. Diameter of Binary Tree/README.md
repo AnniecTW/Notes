@@ -48,7 +48,7 @@ Constraints:<br>
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 1. Tree / Depth-First Search
-   Use DFS to calculate the height of each subtree. The diameter is the maximum sum of left and right subtree heights at any node.<br>
+   - Use DFS to calculate the height of each subtree. The diameter is the maximum sum of left and right subtree heights at any node.<br>
    
 ### Plan
 > - Sketch visualizations and write pseudocode
