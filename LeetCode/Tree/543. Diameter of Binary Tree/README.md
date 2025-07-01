@@ -1,6 +1,6 @@
-## 102. Binary Tree Level Order Traversal
-🔗 Link: [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)<br>
-💡 Difficulty: Medium<br>
+## 543. Diameter of Binary Tree
+🔗 Link: [Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/description/)<br>
+💡 Difficulty: Easy<br>
 🛠️ Topics: Tree<br>
 
 <hr>
