@@ -57,7 +57,7 @@ Constraints:<br>
 General Idea: Use DFS to compute the height of each node’s left and right subtrees. At each node, compute the path length passing through it (leftHeight + rightHeight), and update the maximum diameter seen so far.
 
 1) Initialize `dia = 0`
-2) Defind funtion `dfs(node)`:<br>
+2) Define function `dfs(node)`:<br>
    a) If `node` is `None`, return `0`<br>
    b) Recursively compute left and right subtree heights: 
       `left = dfs(node.left)`, `right = dfs(node.right)`<br>
