@@ -25,7 +25,7 @@ Node 3 -> (3,1,3) is the maximum value in the path.<br>
 
 Example 2:<br>
 
-<img src="https://github.com/user-attachments/assets/530b02f6-73a4-48b0-8708-74142467ae4c" alt="binary tree" width="250" />
+<img src="https://github.com/user-attachments/assets/530b02f6-73a4-48b0-8708-74142467ae4c" alt="binary tree" width="200" />
 
 >Input: root = [3,3,null,4,2]<br>
 Output: 3<br>
