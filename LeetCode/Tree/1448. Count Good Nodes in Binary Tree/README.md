@@ -61,7 +61,7 @@ Constraints:<br>
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
 1. Tree / Depth-First Search
-   Use DFS to traverse the tree while keeping track of the maximum value seen so far. Then compare the value with the current node's to check if it's good.<br>
+   - Use DFS to traverse the tree while keeping track of the maximum value seen so far. Then compare the value with the current node's to check if it's good.<br>
    
 ### Plan
 > - Sketch visualizations and write pseudocode
