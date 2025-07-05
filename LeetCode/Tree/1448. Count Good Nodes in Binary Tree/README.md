@@ -54,9 +54,9 @@ Constraints:<br>
 > - Verify that you and the interviewer are aligned on the expected inputs and outputs.
 1. Can `root` be empty?<br>
 2. Any requirements on time/space complexity?<br>
-3. Happy path - Input: `root` = [1,2,3,4,2]; Output: 5
-4. Edge case - Input: `root` = [1,0]; Output: 1
-5. Edge case - Input: `root` = [1]; Output: 1 (Root is considered as good)
+3. Happy path - Input: `root` = [1,2,3,4,2]; Output: 5<br>
+4. Edge case - Input: `root` = [1,0]; Output: 1<br>
+5. Edge case - Input: `root` = [1]; Output: 1 (Root is considered as good)<br>
 
 ### Match
 > - See if this problem matches a problem category (e.g. Strings/Arrays) and strategies or patterns within the category
