@@ -62,7 +62,7 @@ Constraints:<br>
     Output: 6 # one possible path: 1 → 2 → 3 → 4 → 5 → 7
 
    ```
-5. Edge case -
+4. Edge case -
    ```python
     Input: board = [['1']]
     Output: 1
